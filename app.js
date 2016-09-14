@@ -12,13 +12,11 @@ $(document).ready(function(){
 	  var listItem = "<li><span class='shopping-item'>" + $("#shopping-list-entry").val() + "</span><div class='shopping-item-controls'><button class='shopping-item-toggle'><span class='button-label'>check</span></button><button class='shopping-item-delete'><span class='button-label'>delete</span></button></div></li>";
 	  $("ul").append(listItem);
 	  $("#shopping-list-entry").val('').focus();
-
-	  //if enter key is pressed.  THIS IS BUGGY!!
-	  $(".container").on('keypress','#shopping-list-entry', function(event){
-	  	if(event.which == 13){
-	  		$('#js-shopping-list-form').submit();
-	  	}
-	  });
+	}).on('keyup', '#shopping-list-entry', function(event){
+		if(event.which == 13){
+			//event.preventDefault();
+			$(this).trigger('click');
+		}
 	});
 
 	//removing shopping list items
